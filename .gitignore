@@ -38,3 +38,4 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 >>>>>>> ba1e9008755db6f4d7f5d6a4851f722896bef847
+dist/
