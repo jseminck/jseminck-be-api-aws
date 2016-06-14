@@ -74,6 +74,10 @@ function validateGetParameter(req, res) {
 }
 
 function configureAwsRoutes(app) {
+    app.all('/api/*', function (req, res, next) {
+        next();
+    });
+
     app.route('/api/aws').get(get);
 
     app.route('/api/aws/start').post(start);

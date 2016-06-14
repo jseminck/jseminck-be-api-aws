@@ -13,10 +13,6 @@ var _cors = require('./cors');
 
 var _cors2 = _interopRequireDefault(_cors);
 
-var _data = require('./data');
-
-var _data2 = _interopRequireDefault(_data);
-
 var _env = require('env2');
 
 var _env2 = _interopRequireDefault(_env);
@@ -28,5 +24,4 @@ function configure(app) {
 
     (0, _express2.default)(app);
     (0, _cors2.default)(app);
-    (0, _data2.default)();
 }
