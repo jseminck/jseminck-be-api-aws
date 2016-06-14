@@ -1,25 +1,31 @@
 language: node_js
 node_js:
-    - '5'
+- '5'
 env:
-    - NODE_ENV=TEST CXX=g++-4.8
+- NODE_ENV=TEST CXX=g++-4.8
 services:
-    - postgresql
+- postgresql
 addons:
-    postgresql: "9.4"
-    apt:
-        sources:
-        - ubuntu-toolchain-r-test
-        packages:
-        - g++-4.8
+  postgresql: '9.4'
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
 before_script:
-    - psql -c 'create database aws;' -U postgres
-    - sleep 15
+- psql -c 'create database aws;' -U postgres
+- sleep 15
 install:
-    - travis_retry npm install -g node-gyp
-    - travis_retry npm install
-    - sleep 15
+- travis_retry npm install -g node-gyp
+- travis_retry npm install
+- sleep 15
 script:
-    - travis_retry npm run lint
-    - travis_retry npm test
-
+- travis_retry npm run lint
+- travis_retry npm test
+deploy:
+  provider: heroku
+  api_key:
+    secure: mPEde77lGGY3ykvIVMX5fClZ6xZfOpiSqyWqWc63FfOSxLBrzyKiesW2ymybdu72qs5dFclpDVEZhL7Oyq9cvxs0UlpagMcNkeGtxjw0seOjF/O5HZiaxl89M2XQo9kOSEUzU7Ca/0v3Yuzdr6gKio9Jd2KnAWr02FWXGzx7jALkGABwAYSyk2+EzTYUdJb+7h9Y7VPcf0XYqJyJ2ku8YUNiDXuTDJsFnwvXh66aRPnI5jV6YyGz2hUIA34h/iJ/klToBiKI91s+Llxa0ElIvn5Cl5ugrXYF6P/L4rARKtIeS8CN77v44baQUJnhWZXf1uLUgJLK3eSDpzhcXaHaAtWY77ehyDsSDTowzT68XD3bh2syZlovbOgWCuyuQQbqhlV3aH5qqxH9IZika7RSUNR41ke5kNYiAeATS0urJpWtFvFBNM04b5gU4ARMskAhAAwti8zhZFXYwsocxkKTVkvjgUig4rBYJAf4114pUNxCoroeUUJhH+x32p+cOEpxb1tuRnV6XmplofKoj7xf34XBKYh3cpECeW0t1JV81UNcsIBdqWltOu9fnHJBNpjsfylKayZHk4MZjEu8rDzKGFbN8gerLOF7y5+ILZ7JJ/VmCYF3qIoJatOiITGZ0rbKuNKnWn2JHJ6hUlJ2UJS1pVIo8uDf/aGlEW9ilnu8kTg=
+  app: powerful-meadow-99607
+  on:
+    repo: jseminck/jseminck-be-api-aws

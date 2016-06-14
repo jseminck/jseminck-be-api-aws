@@ -14,7 +14,13 @@ var _awsSdk = require('aws-sdk');
 
 var _awsSdk2 = _interopRequireDefault(_awsSdk);
 
+var _verifyLogin = require('../verifyLogin');
+
+var _verifyLogin2 = _interopRequireDefault(_verifyLogin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { return step("next", value); }, function (err) { return step("throw", err); }); } } return step("next"); }); }; }
 
 _awsSdk2.default.config.region = 'eu-central-1';
 _awsSdk2.default.config.accessKeyId = process.env.AWS_ACCESS_KEY;
@@ -74,9 +80,42 @@ function validateGetParameter(req, res) {
 }
 
 function configureAwsRoutes(app) {
-    app.all('/api/*', function (req, res, next) {
-        next();
-    });
+    var _this = this;
+
+    app.all('/api/*', function () {
+        var ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(req, res, next) {
+            var result;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.next = 2;
+                            return (0, _verifyLogin2.default)(req, res);
+
+                        case 2:
+                            result = _context.sent;
+
+
+                            if (result.success) {
+                                next();
+                            } else {
+                                res.status(401).send({
+                                    "error": result.message
+                                });
+                            }
+
+                        case 4:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, _this);
+        }));
+
+        return function (_x, _x2, _x3) {
+            return ref.apply(this, arguments);
+        };
+    }());
 
     app.route('/api/aws').get(get);
 
