@@ -29,3 +29,4 @@ deploy:
   app: powerful-meadow-99607
   on:
     repo: jseminck/jseminck-be-api-aws
+  skip_cleanup: true
