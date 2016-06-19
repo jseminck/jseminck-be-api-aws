@@ -38,6 +38,7 @@
     "babel-plugin-transform-runtime": "^6.6.0",
     "babel-polyfill": "^6.7.4",
     "env2": "^2.0.7",
+    "jseminck-be-communication-utils": "git+https://github.com/jseminck/jseminck-be-communication-utils.git",
     "jseminck-be-server": "git+https://github.com/jseminck/jseminck-be-server.git",
     "jsonwebtoken": "^5.7.0",
     "lodash": "^4.6.1",
