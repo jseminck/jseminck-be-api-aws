@@ -41,6 +41,6 @@
     "jseminck-be-communication-utils": "git+https://github.com/jseminck/jseminck-be-communication-utils.git",
     "jseminck-be-server": "git+https://github.com/jseminck/jseminck-be-server.git",
     "lodash": "^4.6.1",
-    "node-fetch": "^1.5.3",
+    "node-fetch": "^1.5.3"
   }
 }
