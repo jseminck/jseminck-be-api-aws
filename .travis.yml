@@ -16,7 +16,7 @@ script:
 after_success:
 - chmod 600 deploy-key
 - mv deploy-key ~/.ssh/id_rsa
-- rm -rf lib/
+- rm -rf src/
 - rm -rf node_modules/
 - tar -czf jseminck-be-api-aws.tgz .
 - scp jseminck-be-api-aws.tgz deploy@95.85.25.10:/home/apps/
